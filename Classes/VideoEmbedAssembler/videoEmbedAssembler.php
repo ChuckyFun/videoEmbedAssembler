@@ -8,6 +8,7 @@
 
 namespace IGA\VideoEmbedAssembler;
 
+use IGA\LinkAssembler\linkAssembler;
 
 class videoEmbedAssembler
 {
@@ -27,8 +28,9 @@ class videoEmbedAssembler
     public static function convertText(string $string):string
     {
 
-        $output = urldecode($string);
+        $string = urldecode($string);
 
+        $output = linkAssembler::link($string);
         $output = (self::$isAddedEmbed == false) ? self::youtubeEmbed($output) : $output;
         $output = (self::$isAddedEmbed == false) ? self::vimeoEmbed($output) : $output;
         $output = (self::$isAddedEmbed == false) ? self::dailymotionEmbed($output) : $output;
